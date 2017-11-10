@@ -43,6 +43,7 @@ class ComposerStaticInit374429f4ab4935127e2d36a0613c8d3a
             'Sensio\\Bundle\\GeneratorBundle\\' => 30,
             'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
             'Sensio\\Bundle\\DistributionBundle\\' => 33,
+            'SMetricBundle\\' => 14,
         ),
         'P' => 
         array (
@@ -160,6 +161,10 @@ class ComposerStaticInit374429f4ab4935127e2d36a0613c8d3a
         'Sensio\\Bundle\\DistributionBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/sensio/distribution-bundle',
+        ),
+        'SMetricBundle\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/SmartNET/SMetricBundle',
         ),
         'Psr\\SimpleCache\\' => 
         array (

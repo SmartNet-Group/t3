@@ -5,7 +5,8 @@
     "autoload": {
         "psr-4": {
             "": "src/",
-            "AppBundle\\": "src/AppBundle"
+            "AppBundle\\": "src/AppBundle",
+            "SMetricBundle\\": "src/SmartNET/SMetricBundle"
         },
         "classmap": [
             "app/AppKernel.php",
