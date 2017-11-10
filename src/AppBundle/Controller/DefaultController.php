@@ -17,14 +17,16 @@ class DefaultController extends Controller
     {
 
         $u = new SMetricBundle\User();
-        $u->userName = "Я";
+        $u->userName = "Иван";
 
         $d = new Dep\Department();
-        $d->depName = "Контора";
+        $d->depName = "SmartNET Group";
 
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'user' => $u->userName,
+            'dep' => $d->depName
         ]);
     }
 }

@@ -31,6 +31,7 @@
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "3.3.*",
+        "twbs/bootstrap": "v4.0.0-beta.2",
         "twig/twig": "^2.0"
     },
     "require-dev": {
