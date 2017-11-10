@@ -79,9 +79,9 @@ class ComposerStaticInit374429f4ab4935127e2d36a0613c8d3a
         array (
             'Composer\\CaBundle\\' => 18,
         ),
-        'A' => 
+        'B' => 
         array (
-            'AppBundle\\' => 10,
+            'BlogBundle\\' => 11,
         ),
     );
 
@@ -230,9 +230,9 @@ class ComposerStaticInit374429f4ab4935127e2d36a0613c8d3a
         array (
             0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
         ),
-        'AppBundle\\' => 
+        'BlogBundle\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/AppBundle',
+            0 => __DIR__ . '/../..' . '/src/BlogBundle',
         ),
     );
 
