@@ -16,6 +16,7 @@ class UsersList
     function __construct()
     {
         $u1 = new User();
+/*
         $u1->userID = 0;
         $u1->userName = 'Иван';
         $u1->userEMail = 'ivan@kachinskiy.ru';
@@ -32,11 +33,11 @@ class UsersList
         $u3->userName = 'Настя';
         $u3->userEMail = 'nastya@kachinskaya.ru';
         $u3->userPass = 'u2pass';
-
+*/
         $this->usersList =[];
-        $this->usersList[0] = $u1;
-        $this->usersList[1] = $u2;
-        $this->usersList[2] = $u3;
+        $this->usersList[] = $u1;
+//        $this->usersList[] = $u2;
+//        $this->usersList[] = $u3;
 
         return $this->usersList;
     }

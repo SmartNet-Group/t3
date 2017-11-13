@@ -5,23 +5,25 @@
     <form  method="POST" action={{ path('list', {}) }}>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-right">Имя:</label>
-            <input type="text" class="form-control col-sm-10" placeholder={{ uName }}>
+            <input type="text" name="uName" class="form-control col-sm-10" placeholder={{ uName }}>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-right">e-Mail:</label>
-            <input type="text" class="form-control col-sm-10" placeholder={{ uEMail }}>
+            <input type="text" name="uEMail" class="form-control col-sm-10" placeholder={{ uEMail }}>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-right">Пароль:</label>
-            <input type="text" class="form-control col-sm-10" placeholder={{ uPass }}>
+            <input type="text" name="uPass" class="form-control col-sm-10" placeholder={{ uPass }}>
         </div>
         <div class="form-group row">
             <div class="col-sm-8 text-right">
-                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <button type="submit" name="btnSubmit" value="btnSave" class="btn btn-primary">Сохранить</button>
             </div>
             <div class="col-sm-4 text-right">
-                <button type="submit" class="btn btn-primary">Выйти без сохранения</button>
+                <button type="submit" name="btnSubmit" value="btnNotSave" class="btn btn-primary">Выйти без сохранения</button>
             </div>
+            <input type="hidden" name="uNumber" value={{ uN }}>
+            <input type="hidden" name="formName" value="UserEdit">
         </div>
     </form>
 {% endblock %}

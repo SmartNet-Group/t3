@@ -2,27 +2,28 @@
 
 {% block body %}
     <p class="lead">Создание нового пользователя</p>
-    <form action={{ path('list') }}>
+    <form  method="POST" action={{ path('list') }}>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-right">Имя:</label>
-            <input type="text" class="form-control col-sm-10" placeholder="Здесь нужно имя пользователя">
+            <input type="text" name="uName" class="form-control col-sm-10" placeholder="Здесь нужно имя пользователя">
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-right">e-Mail:</label>
-            <input type="text" class="form-control col-sm-10" placeholder="Здесь нужна эл.почта пользователя">
+            <input type="text" name="uEMail" class="form-control col-sm-10" placeholder="Здесь нужна эл.почта пользователя">
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-right">Пароль:</label>
-            <input type="text" class="form-control col-sm-10" placeholder="Здесь нужен пароль пользователя">
+            <input type="text" name="uPass" class="form-control col-sm-10" placeholder="Здесь нужен пароль пользователя">
         </div>
         <div class="form-group row">
             <div class="col-sm-8 text-right">
-                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <button type="submit" name="btnSubmit" value="SaveNew" class="btn btn-primary">Сохранить</button>
             </div>
             <div class="col-sm-4 text-right">
-                <button type="submit" class="btn btn-primary">Выйти без сохранения</button>
+                <button type="submit" name="btnSubmit" value="DoNothing" class="btn btn-primary">Выйти без сохранения</button>
             </div>
         </div>
+        <input type="hidden" name="formName" value="NewUser">
     </form>
 {% endblock %}
 

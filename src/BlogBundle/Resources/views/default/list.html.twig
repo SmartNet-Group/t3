@@ -3,6 +3,8 @@
 {% block body %}
     <p class="lead">Список всех пользователей</p>
     <p>{{ query }}</p>
+    <p>Действие: {{ action }}</p>
+    <p>Сессия: {{ start }}</p>
     <table class="table">
         <thead>
             <tr>
@@ -14,17 +16,27 @@
             </tr>
         </thead>
         <tbody>
-            {% for i in 0..uNum-1 %}
+            {% if uList == null %}
                 <tr>
-                    <td>{{ uList[i].userID }}</td>
-                    <td>{{ uList[i].userName }}</td>
-                    <td>{{ uList[i].userEMail }}</td>
-                    <td>{{ uList[i].userPass }}</td>
-                    <td><a href={{ path('edit', {uN:i}) }}>Ред-ть </a>
-                        <a href={{ path('delete', {uN:i}) }}>Удалить</a>
-                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-            {% endfor %}
+            {% else %}
+                {% for i in 0..uNum-1 %}
+                    <tr>
+                        <td>{{ uList[i].userID }}</td>
+                        <td>{{ uList[i].userName }}</td>
+                        <td>{{ uList[i].userEMail }}</td>
+                        <td>{{ uList[i].userPass }}</td>
+                        <td><a href={{ path('edit', {uN:i}) }}>Ред-ть </a>
+                            <a href={{ path('delete', {uN:i}) }}>Удалить</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
         </tbody>
     </table>
 {% endblock %}

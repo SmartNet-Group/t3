@@ -11,8 +11,8 @@ namespace SmartNET\SMetricBundle\Users;
 
 class User
 {
-    public $userID;
-    public $userName;
-    public $userEMail;
-    public $userPass;
+    public $userID = "NN";
+    public $userName = "";
+    public $userEMail = "";
+    public $userPass = "";
 }
