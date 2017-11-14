@@ -10,15 +10,12 @@ namespace SmartNET\SMetricBundle;
 
 function InitAll() {
 
-    global $uList;
-
 /*
     $uL = new \SMetricBundle\Users\UsersList();
     $uList = &$uL->usersList;
 */
-    if (!isset($_SESSION['start'])) {
-        $_SESSION['start'] = true;
-        $uList = null;
+    if (isset($_SESSION['start'])) {
+        $_SESSION['uList'] = null;
     }
 
     return true;
