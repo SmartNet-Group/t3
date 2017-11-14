@@ -5,7 +5,6 @@ require __DIR__.'/../../../src/SmartNET/SMetricBundle/InitApp.php';
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use function SmartNET\SMetricBundle\InitAll;
-use SMetricBundle\Users\UsersList;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use SmartNET\SMetricBundle\Dep;
