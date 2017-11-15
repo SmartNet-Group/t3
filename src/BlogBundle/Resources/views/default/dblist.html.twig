@@ -1,0 +1,44 @@
+{% extends '@Blog/base.html.twig' %}
+
+{% block body %}
+    <p class="lead">Список всех пользователей из Базы</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Имя</th>
+                <th scope="col">e-Mail</th>
+                <th scope="col">Пароль</th>
+                <th scope="col">Команды</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.pass }}</td>
+                <td>
+                    <a href={{ path('dblist') }}>Ред-ть </a>
+                    <a href={{ path('dblist') }}>Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block stylesheets %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href={{ asset('css/bootstrap.min.css') }}>
+    <link rel="stylesheet" href={{ asset('css/skin.css') }}>
+{% endblock %}
+
+{% block javascript %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src={{ asset('js/jquery-3.2.1.slim.min.js') }}></script>
+    <script src={{ asset('js/popper.min.js') }}></script>
+    <script src={{ asset('js/bootstrap.min.js') }}></script>
+{% endblock %}

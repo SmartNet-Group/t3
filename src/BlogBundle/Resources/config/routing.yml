@@ -6,6 +6,10 @@ list:
   path: /list
   defaults: { _controller: BlogBundle:Default:list}
 
+dblist:
+  path: /dblist
+  defaults: { _controller: BlogBundle:Default:dblist}
+
 new:
   path: /new
   defaults: { _controller: BlogBundle:Default:new}

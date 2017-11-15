@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use SmartNET\SMetricBundle\Dep;
 use SmartNET\SMetricBundle\Users;
+use Doctrine\DBAL\Driver\Connection;
 
 class DefaultController extends Controller
 {
@@ -20,6 +21,20 @@ class DefaultController extends Controller
             InitAll();
         }
         return $this->render('@Blog/default/index.html.twig', [
+        ]);
+    }
+
+    public function dblistAction(Request $request, Connection $conn)
+    {
+        $result = $conn->query('SELECT * FROM users');
+        $users = $result->fetchAll();
+
+        if (!isset($_SESSION['start'])) {
+            $_SESSION['start'] = true;
+            InitAll();
+        }
+        return $this->render('@Blog/default/dblist.html.twig', [
+            'users' => $users
         ]);
     }
 
