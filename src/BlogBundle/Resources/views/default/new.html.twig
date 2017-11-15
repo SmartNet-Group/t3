@@ -2,7 +2,7 @@
 
 {% block body %}
     <p class="lead">Создание нового пользователя</p>
-    <form  method="POST" action={{ path('list') }}>
+    <form  method="POST" action={{ path('dblist') }}>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-right">Имя:</label>
             <input type="text" name="uName" class="form-control col-sm-10" placeholder="Здесь нужно имя пользователя">

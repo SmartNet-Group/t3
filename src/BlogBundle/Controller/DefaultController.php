@@ -95,7 +95,7 @@ class DefaultController extends Controller
         }
     }
 
-    public function newAction(Request $request)
+    public function newAction(Request $request, Connection $conn)
     {
         return $this->render('@Blog/default/new.html.twig', [
         ]);
@@ -114,11 +114,31 @@ class DefaultController extends Controller
         ]);
     }
 
-    public function deleteAction(Request $request, $uN)
+
+    public function dbeditAction(Request $request, $uN, Connection $conn)
     {
-        $uName = $_SESSION['uList'][$uN]->userName;
-        $uEMail = $_SESSION['uList'][$uN]->userEMail;
-        $uPass = $_SESSION['uList'][$uN]->userPass;
+
+        $result = $conn->query('SELECT * FROM users WHERE id='.$uN);
+        $user = $result->fetch();
+
+        $uName = $user['name'];
+        $uEMail = $user['email'];
+        $uPass = $user['pass'];
+        return $this->render('@Blog/default/dbedit.html.twig', [
+            'uN'    => $uN,
+            'uName' =>  $uName,
+            'uEMail' => $uEMail,
+            'uPass' => $uPass
+        ]);
+    }
+    public function deleteAction(Request $request, $uN, Connection $conn)
+    {
+        $result = $conn->query('SELECT * FROM users WHERE id='.$uN);
+        $user = $result->fetch();
+
+        $uName = $user['name'];
+        $uEMail = $user['email'];
+        $uPass = $user['pass'];
         return $this->render('@Blog/default/delete.html.twig', [
             'uN'    => $uN,
             'uName' =>  $uName,

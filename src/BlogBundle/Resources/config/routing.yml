@@ -20,6 +20,12 @@ edit:
   requirements:
     uN: '\d+'
 
+dbedit:
+  path: /dbedit/{uN}
+  defaults: { _controller: BlogBundle:Default:dbedit}
+  requirements:
+    uN: '\d+'
+
 delete:
   path: /delete/{uN}
   defaults: { _controller: BlogBundle:Default:delete}

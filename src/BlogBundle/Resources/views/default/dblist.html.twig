@@ -1,32 +1,42 @@
 {% extends '@Blog/base.html.twig' %}
 
 {% block body %}
-    <p class="lead">Список всех пользователей из Базы</p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Имя</th>
-                <th scope="col">e-Mail</th>
-                <th scope="col">Пароль</th>
-                <th scope="col">Команды</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.pass }}</td>
-                <td>
-                    <a href={{ path('dblist') }}>Ред-ть </a>
-                    <a href={{ path('dblist') }}>Удалить</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <h3 class="text-center">Тест системы контроля доступа на Symfony и DBAL</h3>
+    <form method="post" class="" action={{ path('new') }}>
+        <div class="row col-sm-12">
+            <div class="col-sm-8">
+                <h4>Список всех пользователей из Базы</h4>
+            </div>
+            <div class="col-sm-4 text-right">
+                <button class="btn btn-info" href={{ path('new') }}>Добавить нового...</button>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">e-Mail</th>
+                    <th scope="col">Пароль</th>
+                    <th scope="col">Команды</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.pass }}</td>
+                    <td>
+                        <a href={{ path('dbedit', {uN:user.id}) }}>Ред-ть </a>
+                        <a href={{ path('delete', {uN:user.id}) }}>Удалить</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
 {% endblock %}
 
 {% block stylesheets %}
