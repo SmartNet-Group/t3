@@ -36,6 +36,10 @@
                 {% endfor %}
             </tbody>
         </table>
+        <h3>{{ action }}</h3>
+        {% for i in params %}
+            <p>{{ i }}</p>
+        {% endfor %}
     </form>
 {% endblock %}
 

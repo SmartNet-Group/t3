@@ -2,10 +2,6 @@ homepage:
   path: /
   defaults: { _controller: BlogBundle:Default:index }
 
-list:
-  path: /list
-  defaults: { _controller: BlogBundle:Default:list}
-
 dblist:
   path: /dblist
   defaults: { _controller: BlogBundle:Default:dblist}
@@ -13,12 +9,6 @@ dblist:
 new:
   path: /new
   defaults: { _controller: BlogBundle:Default:new}
-
-edit:
-  path: /edit/{uN}
-  defaults: { _controller: BlogBundle:Default:edit}
-  requirements:
-    uN: '\d+'
 
 dbedit:
   path: /dbedit/{uN}
