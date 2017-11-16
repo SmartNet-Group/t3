@@ -5,9 +5,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href={{ asset('css/bootstrap.min.css') }}>
-    <link rel="stylesheet" href={{ asset('css/skin.css') }}>
+    {{ parent() }}
 {% endblock %}
 
 {% block javascript %}

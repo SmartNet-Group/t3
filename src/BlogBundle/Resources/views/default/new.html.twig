@@ -17,10 +17,10 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-8 text-right">
-                <button type="submit" name="btnSubmit" value="SaveNew" class="btn btn-primary">Сохранить</button>
+                <button type="submit" name="btnSubmit" value="btnSaveNew" class="btn btn-primary">Сохранить</button>
             </div>
             <div class="col-sm-4 text-right">
-                <button type="submit" name="btnSubmit" value="DoNothing" class="btn btn-primary">Выйти без сохранения</button>
+                <button type="submit" name="btnSubmit" value="btnDoNothing" class="btn btn-primary">Выйти без сохранения</button>
             </div>
         </div>
         <input type="hidden" name="formName" value="NewUser">
@@ -28,9 +28,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href={{ asset('css/bootstrap.min.css') }}>
-    <link rel="stylesheet" href={{ asset('css/skin.css') }}>
+    {{ parent() }}
 {% endblock %}
 
 {% block javascript %}

@@ -3,6 +3,7 @@
 namespace BlogBundle\Controller;
 require __DIR__ . '/../../../src/SmartNET/SMetricBundle/InitAll.php';
 
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use function SmartNET\SMetricBundle\InitAll;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -26,21 +27,63 @@ class DefaultController extends Controller
 
     public function dblistAction(Request $request, Connection $conn)
     {
-        $result = $conn->query('SELECT * FROM users');
-        $users = $result->fetchAll();
-        $action = "";
+
         $params = [];
         switch($_SERVER['REQUEST_METHOD'])
         {
             case 'GET':
-                if ($request->query->get('formName') == 'UserEdit') {
-                    $action = "Обрабатываем отредактированного пользователя";
+
+                // Редактирование пользователя
+                //
+                if (($request->query->get('formName') == 'UserEdit') &&
+                    ($request->query->get('btnSubmit') == 'btnSave')) {
+                    $id =   $request->query->get('uNumber');                // берём ID юзера
+                    $name   =   $request->query->get('uName');
+                    $email  =   $request->query->get('uEMail');
+                    $pass   =   $request->query->get('uPass');
+
+                    $result = $conn->query('SELECT * FROM users WHERE id ='.$id);
+                    $user = $result->fetch();
+
+                    if ($name == '')
+                        $name = $user['name'];
+                    if ($email == '')
+                        $email = $user['email'];
+                    if ($pass == '')
+                        $pass = $user['pass'];
+
+                    $conn->update('users', [
+                            'name'  =>  $name,
+                            'email' =>  $email,
+                            'pass'  =>  $pass
+                        ],
+                        [
+                            'id' => $id
+                        ]);
                 }
-                if ($request->query->get('formName') == 'UserDelete') {
-                    $action = "Обрабатываем удаление пользователя";
+
+                // Удаление пользователя
+                //
+                if (($request->query->get('formName') == 'UserDelete') &&   // если запрос от формы UserDelete
+                    ($request->query->get('btnSubmit') == 'btnDelete')) {   // и нажата кнопка "Удалить"
+                    $id =   $request->query->get('uNumber');                // берём ID юзера
+                    $conn->delete('users', [                                    // и удаляем его по этому ID
+                        'id'    =>  $id
+                    ]);
                 }
-                if ($request->query->get('fomName') == 'NewUser') {
-                    $action = 'Обрабатываем создание нового пользователя';
+
+                // создание нового пользователя
+                //
+                if (($request->query->get('formName') == 'NewUser') &&
+                    ($request->query->get('btnSubmit') == 'btnSaveNew')) {
+                    $name   =   $request->query->get('uName');
+                    $email  =   $request->query->get('uEMail');
+                    $pass   =   $request->query->get('uPass');
+                    $conn->insert('users', [
+                        'name'  => $name,
+                        'email' => $email,
+                        'pass'  => $pass
+                    ]);
                 }
                 $params = &$_GET;
                 break;
@@ -58,14 +101,12 @@ class DefaultController extends Controller
                 break;
             default:
         }
-//        if (!isset($_SESSION['start'])) {
-//            $_SESSION['start'] = true;
-//            InitAll();
-//        }
+        // вывод текущего списка пользователей
+        //
+        $result = $conn->query('SELECT * FROM users ORDER BY id');
+        $users = $result->fetchAll();
         return $this->render('@Blog/default/dblist.html.twig', [
-            'users'     => $users,
-            'action'    => $action,
-            'params'    => $params
+            'users'     => $users
         ]);
     }
 
@@ -76,6 +117,23 @@ class DefaultController extends Controller
         ]);
     }
 
+
+    public function dbviewAction(Request $request, $uN, Connection $conn)
+    {
+
+        $result = $conn->query('SELECT * FROM users WHERE id='.$uN);
+        $user = $result->fetch();
+
+        $uName = $user['name'];
+        $uEMail = $user['email'];
+        $uPass = $user['pass'];
+        return $this->render('@Blog/default/dbview.html.twig', [
+            'uN'    => $uN,
+            'uName' =>  $uName,
+            'uEMail' => $uEMail,
+            'uPass' => $uPass
+        ]);
+    }
 
     public function dbeditAction(Request $request, $uN, Connection $conn)
     {

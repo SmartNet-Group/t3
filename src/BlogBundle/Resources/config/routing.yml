@@ -10,6 +10,12 @@ new:
   path: /new
   defaults: { _controller: BlogBundle:Default:new}
 
+dbview:
+  path: /dbview/{uN}
+  defaults: { _controller: BlogBundle:Default:dbview}
+  requirements:
+    uN: '\d+'
+
 dbedit:
   path: /dbedit/{uN}
   defaults: { _controller: BlogBundle:Default:dbedit}

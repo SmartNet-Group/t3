@@ -18,7 +18,7 @@
                     <th scope="col">Имя</th>
                     <th scope="col">e-Mail</th>
                     <th scope="col">Пароль</th>
-                    <th scope="col">Команды</th>
+                    <th scope="col" class="text-center">Команды</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,25 +28,26 @@
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.pass }}</td>
-                    <td>
-                        <a href={{ path('dbedit', {uN:user.id}) }}>Ред-ть </a>
-                        <a href={{ path('delete', {uN:user.id}) }}>Удалить</a>
+                    <td class="text-center">
+                        <a href={{ path('dbview', {uN:user.id}) }}>
+                            <i class="fa fa-search fa-2x" data-toggle="tooltip" data-placement="top" title="Просмотр"></i>&nbsp;&nbsp;
+                        </a>
+                        <a href={{ path('dbedit', {uN:user.id}) }}>
+                            <i class="fa fa-edit fa-2x" data-toggle="tooltip" data-placement="top" title="Редактировать"></i>&nbsp;&nbsp;
+                        </a>
+                        <a href={{ path('delete', {uN:user.id}) }}>
+                            <i class="fa fa-trash fa-2x" data-toggle="tooltip" data-placement="top" title="Удалить"></i>
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <h3>{{ action }}</h3>
-        {% for i in params %}
-            <p>{{ i }}</p>
-        {% endfor %}
     </form>
 {% endblock %}
 
 {% block stylesheets %}
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href={{ asset('css/bootstrap.min.css') }}>
-    <link rel="stylesheet" href={{ asset('css/skin.css') }}>
+    {{ parent() }}
 {% endblock %}
 
 {% block javascript %}
