@@ -41,6 +41,7 @@ class DefaultController extends Controller
                     $name   =   $request->query->get('uName');
                     $email  =   $request->query->get('uEMail');
                     $pass   =   $request->query->get('uPass');
+                    $bday   =   $request->query->get('uBDay');
 
                     $result = $conn->query("SELECT * FROM users WHERE guid ='".$guid."'");
                     $user = $result->fetch();
@@ -51,11 +52,14 @@ class DefaultController extends Controller
                         $email = $user['email'];
                     if ($pass == '')
                         $pass = $user['pass'];
+                    if ($bday == '')
+                        $bday = $user['bday'];
 
                     $conn->update('users', [
                             'name'  =>  $name,
                             'email' =>  $email,
-                            'pass'  =>  $pass
+                            'pass'  =>  $pass,
+                            'bday'  =>  $bday
                         ],
                         [
                             'guid' => $guid
@@ -103,7 +107,7 @@ class DefaultController extends Controller
         }
         // вывод текущего списка пользователей
         //
-        $result = $conn->query("SELECT * FROM users");
+        $result = $conn->query("SELECT * FROM users ORDER BY name");
         $users = $result->fetchAll();
         return $this->render('@Blog/default/dblist.html.twig', [
             'users'     => $users
@@ -141,14 +145,8 @@ class DefaultController extends Controller
         $result = $conn->query("SELECT * FROM users WHERE guid ='".$uN."'");
         $user = $result->fetch();
 
-        $uName = $user['name'];
-        $uEMail = $user['email'];
-        $uPass = $user['pass'];
         return $this->render('@Blog/default/dbedit.html.twig', [
-            'uN'    => $uN,
-            'uName' =>  $uName,
-            'uEMail' => $uEMail,
-            'uPass' => $uPass
+            'user'    => $user
         ]);
     }
 

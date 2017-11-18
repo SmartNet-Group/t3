@@ -18,16 +18,18 @@
                     <th scope="col">Имя</th>
                     <th scope="col">e-Mail</th>
                     <th scope="col">Пароль</th>
+                    <th scope="col">День ангела</th>
                     <th scope="col" class="text-center">Команды</th>
                 </tr>
             </thead>
             <tbody>
                 {% for user in users %}
                 <tr>
-                    <td>{{ user.guid }}</td>
+                    <td>{{ user.id }}</td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.pass }}</td>
+                    <td>{{ user.bday }}</td>
                     <td class="text-center">
                         <a href={{ path('dbview', {uN:user.guid}) }}>
                             <i class="fa fa-search fa-2x" data-toggle="tooltip" data-placement="top" title="Просмотр"></i>&nbsp;&nbsp;
