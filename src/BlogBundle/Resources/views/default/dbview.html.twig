@@ -1,19 +1,23 @@
 {% extends '@Blog/base.html.twig' %}
 
 {% block body %}
-    <p class="lead">Просмотр выбранного пользователя # {{ uN }}</p>
+    <p class="lead">Просмотр выбранного пользователя # {{ user.id }}</p>
     <form  method="get" action={{ path('dblist', {}) }}>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-right">Имя:</label>
-            <input type="text" readonly name="uName" class="form-control col-sm-10" placeholder={{ uName }}>
+            <input type="text" readonly name="uName" class="form-control col-sm-10" placeholder={{ user.name }}>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-right">e-Mail:</label>
-            <input type="text" readonly name="uEMail" class="form-control col-sm-10" placeholder={{ uEMail }}>
+            <input type="text" readonly name="uEMail" class="form-control col-sm-10" placeholder={{ user.email }}>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-right">Пароль:</label>
-            <input type="text" readonly name="uPass" class="form-control col-sm-10" placeholder={{ uPass }}>
+            <input type="text" readonly name="uPass" class="form-control col-sm-10" placeholder={{ user.pass }}>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-right">День ангела:</label>
+            <input type="text" readonly name="uPass" class="form-control col-sm-10" placeholder={{ user.bday }}>
         </div>
         <div class="form-group row">
             <div class="col-sm-8 text-right">
@@ -21,7 +25,7 @@
             <div class="col-sm-4 text-right">
                 <button type="submit" name="btnSubmit" value="btnReturn" class="btn btn-primary">Вернуться к списку</button>
             </div>
-            <input type="hidden" name="uNumber" value={{ uN }}>
+            <input type="hidden" name="uNumber" value={{ user.guid }}>
             <input type="hidden" name="formName" value="UserView">
         </div>
     </form>

@@ -37,23 +37,12 @@ class DefaultController extends Controller
                 //
                 if (($request->query->get('formName') == 'UserEdit') &&
                     ($request->query->get('btnSubmit') == 'btnSave')) {
-                    $guid =   $request->query->get('uNumber');                // берём ID юзера
+                    $guid =   $request->query->get('uNumber');                // берём GUID юзера
+
                     $name   =   $request->query->get('uName');
                     $email  =   $request->query->get('uEMail');
                     $pass   =   $request->query->get('uPass');
                     $bday   =   $request->query->get('uBDay');
-
-                    $result = $conn->query("SELECT * FROM users WHERE guid ='".$guid."'");
-                    $user = $result->fetch();
-
-                    if ($name == '')
-                        $name = $user['name'];
-                    if ($email == '')
-                        $email = $user['email'];
-                    if ($pass == '')
-                        $pass = $user['pass'];
-                    if ($bday == '')
-                        $bday = $user['bday'];
 
                     $conn->update('users', [
                             'name'  =>  $name,
@@ -128,14 +117,8 @@ class DefaultController extends Controller
         $result = $conn->query("SELECT * FROM users WHERE guid ='".$uN."'");
         $user = $result->fetch();
 
-        $uName = $user['name'];
-        $uEMail = $user['email'];
-        $uPass = $user['pass'];
         return $this->render('@Blog/default/dbview.html.twig', [
-            'uN'    => $uN,
-            'uName' =>  $uName,
-            'uEMail' => $uEMail,
-            'uPass' => $uPass
+            'user'    => $user
         ]);
     }
 
@@ -155,14 +138,8 @@ class DefaultController extends Controller
         $result = $conn->query("SELECT * FROM users WHERE guid ='".$uN."'");
         $user = $result->fetch();
 
-        $uName = $user['name'];
-        $uEMail = $user['email'];
-        $uPass = $user['pass'];
         return $this->render('@Blog/default/delete.html.twig', [
-            'uN'    => $uN,
-            'uName' =>  $uName,
-            'uEMail' => $uEMail,
-            'uPass' => $uPass
+            'user'    => $user
         ]);
     }
 }
