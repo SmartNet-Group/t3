@@ -37,12 +37,12 @@ class DefaultController extends Controller
                 //
                 if (($request->query->get('formName') == 'UserEdit') &&
                     ($request->query->get('btnSubmit') == 'btnSave')) {
-                    $id =   $request->query->get('uNumber');                // берём ID юзера
+                    $guid =   $request->query->get('uNumber');                // берём ID юзера
                     $name   =   $request->query->get('uName');
                     $email  =   $request->query->get('uEMail');
                     $pass   =   $request->query->get('uPass');
 
-                    $result = $conn->query('SELECT * FROM users WHERE id ='.$id);
+                    $result = $conn->query("SELECT * FROM users WHERE guid ='".$guid."'");
                     $user = $result->fetch();
 
                     if ($name == '')
@@ -58,7 +58,7 @@ class DefaultController extends Controller
                             'pass'  =>  $pass
                         ],
                         [
-                            'id' => $id
+                            'guid' => $guid
                         ]);
                 }
 
@@ -66,9 +66,9 @@ class DefaultController extends Controller
                 //
                 if (($request->query->get('formName') == 'UserDelete') &&   // если запрос от формы UserDelete
                     ($request->query->get('btnSubmit') == 'btnDelete')) {   // и нажата кнопка "Удалить"
-                    $id =   $request->query->get('uNumber');                // берём ID юзера
+                    $guid =   $request->query->get('uNumber');                // берём ID юзера
                     $conn->delete('users', [                                    // и удаляем его по этому ID
-                        'id'    =>  $id
+                        'guid'    =>  $guid
                     ]);
                 }
 
@@ -103,7 +103,7 @@ class DefaultController extends Controller
         }
         // вывод текущего списка пользователей
         //
-        $result = $conn->query('SELECT * FROM users ORDER BY id');
+        $result = $conn->query("SELECT * FROM users");
         $users = $result->fetchAll();
         return $this->render('@Blog/default/dblist.html.twig', [
             'users'     => $users
@@ -121,7 +121,7 @@ class DefaultController extends Controller
     public function dbviewAction(Request $request, $uN, Connection $conn)
     {
 
-        $result = $conn->query('SELECT * FROM users WHERE id='.$uN);
+        $result = $conn->query("SELECT * FROM users WHERE guid ='".$uN."'");
         $user = $result->fetch();
 
         $uName = $user['name'];
@@ -138,7 +138,7 @@ class DefaultController extends Controller
     public function dbeditAction(Request $request, $uN, Connection $conn)
     {
 
-        $result = $conn->query('SELECT * FROM users WHERE id='.$uN);
+        $result = $conn->query("SELECT * FROM users WHERE guid ='".$uN."'");
         $user = $result->fetch();
 
         $uName = $user['name'];
@@ -154,7 +154,7 @@ class DefaultController extends Controller
 
     public function deleteAction(Request $request, $uN, Connection $conn)
     {
-        $result = $conn->query('SELECT * FROM users WHERE id='.$uN);
+        $result = $conn->query("SELECT * FROM users WHERE guid ='".$uN."'");
         $user = $result->fetch();
 
         $uName = $user['name'];

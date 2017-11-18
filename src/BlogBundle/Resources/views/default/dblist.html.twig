@@ -24,18 +24,18 @@
             <tbody>
                 {% for user in users %}
                 <tr>
-                    <td>{{ user.id }}</td>
+                    <td>{{ user.guid }}</td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.pass }}</td>
                     <td class="text-center">
-                        <a href={{ path('dbview', {uN:user.id}) }}>
+                        <a href={{ path('dbview', {uN:user.guid}) }}>
                             <i class="fa fa-search fa-2x" data-toggle="tooltip" data-placement="top" title="Просмотр"></i>&nbsp;&nbsp;
                         </a>
-                        <a href={{ path('dbedit', {uN:user.id}) }}>
+                        <a href={{ path('dbedit', {uN:user.guid}) }}>
                             <i class="fa fa-edit fa-2x" data-toggle="tooltip" data-placement="top" title="Редактировать"></i>&nbsp;&nbsp;
                         </a>
-                        <a href={{ path('delete', {uN:user.id}) }}>
+                        <a href={{ path('delete', {uN:user.guid}) }}>
                             <i class="fa fa-trash fa-2x" data-toggle="tooltip" data-placement="top" title="Удалить"></i>
                         </a>
                     </td>
